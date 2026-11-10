@@ -1,6 +1,6 @@
 # Deck Physics Patches
 
-Private Batman collision patches for the Deck Physics installer. The installer already includes the graphics mask and blocking GPU waits for each tested game.
+Private Batman collision patches for the [Deck Physics installer](https://github.com/mbushuev/deck-physics). The installer already includes the graphics mask and blocking GPU waits for each tested game.
 
 ## Install
 
