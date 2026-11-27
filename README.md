@@ -2,7 +2,10 @@
 
 Optional per-game performance patches for the [Deck Physics installer](https://github.com/mbushuev/deck-physics). The installer already includes the graphics mask and blocking GPU waits for each tested game.
 
-See the [Batman benchmark results](docs/batman-benchmarks.md) for the performance and battery measurements with the collision patches.
+| Game | Patch set and test results |
+| --- | --- |
+| Batman: Arkham Asylum GOTY | [Collision patches and battery measurements](docs/batman-benchmarks.md) |
+| Mafia II Classic | [GPU clothing and benchmark results](docs/mafia-ii-benchmarks.md) |
 
 ## Install
 
@@ -12,7 +15,7 @@ selected game's patch set.
 
 ### Install from an archive
 
-1. Download `DeckPhysics-Patches-0.1.0.zip` from the latest successful **Package game patches** run in Actions.
+1. Download `DeckPhysics-Patches-0.2.0.zip` from the latest successful **Package game patches** run in Actions.
 2. Extract it into the folder containing `Install.sh`. Merge the `patches/` folder when prompted.
 3. Run `Install.sh` on the Steam Deck in Desktop Mode and select the patches you want. Keep the individual `.deckphysx.zip` files zipped.
 
@@ -26,14 +29,13 @@ patches/
     cloth-shape-reads.deckphysx.zip
 ```
 
-Each patch archive declares its Steam App ID, title, description and dependencies. The installer shows only patches for games it detects.
+Each patch archive declares its Steam App ID, title, description and dependencies. The installer shows the patches for the selected game's profile.
 
-The archive version comes from `VERSION`. To create the 0.1.0 archive locally, run `python3 -m zipfile -c DeckPhysics-Patches-0.1.0.zip patches` from the repository root. You can also run **Package game patches** manually in Actions to refresh an expired download.
+The archive version comes from `VERSION`. To create the 0.2.0 archive locally, run `python3 -m zipfile -c DeckPhysics-Patches-0.2.0.zip patches` from the repository root. You can also run **Package game patches** manually in Actions to refresh an expired download.
 
 ## Mafia II Classic
 
-The optional GPU Clothing patch requires a Deck Physics build with file replacement
-support. It uses the Steam Classic executable and its installed PhysX 2.8.3 runtime.
+The optional GPU Clothing patch requires Deck Physics 0.2.0 or later. It uses the Steam Classic executable and its installed PhysX 2.8.3 runtime.
 Enable **GPU Clothing**, **Six-CU graphics mask**, and **Blocking GPU waits** in
 Deck Physics. Set APEX PhysX to High in the game.
 
