@@ -1,4 +1,4 @@
-"""Build the private GPU Clothing archive for the Deck Physics installer."""
+"""Build the GPU Clothing archive for the Deck Physics installer."""
 
 from pathlib import Path
 import subprocess
@@ -18,17 +18,10 @@ def build(output):
         subprocess.run(['cc', '-O2', '-Wall', '-Wextra', '-fPIC', '-shared', '-pthread',
                         '-Wl,--build-id=none', '-o', str(library), 'cloth-route.c', 'fill.c', '-ldl'],
                        cwd=SOURCE, check=True)
-        packing = work / 'packing.o'
-        subprocess.run(['as', '--32', 'packing.S', '-o', str(packing)], cwd=SOURCE, check=True)
-        payload = {'patch.json': SOURCE / 'patch.json'}
-        for section in ('position', 'basis'):
-            blob = work / f'{section}.bin'
-            subprocess.run(['objcopy', '-O', 'binary', '-j', f'.{section}', str(packing), str(blob)],
-                           check=True)
-            payload[f'files/{blob.name}'] = blob
-        payload[f'files/{library.name}'] = library
-        for filename in ('prepare.py', 'packing.py', 'perfmon.py', 'check-crc.py'):
-            payload[f'files/{filename}'] = SOURCE / filename
+        payload = {'patch.json': SOURCE / 'patch.json',
+                   'files/mafia-gpu-clothing.so': library,
+                   'files/prepare.py': SOURCE / 'prepare.py',
+                   'files/perfmon.py': SOURCE / 'perfmon.py'}
         pending = work / output.name
         with ZipFile(pending, 'w') as archive:
             for member, path in sorted(payload.items()):

@@ -38,14 +38,15 @@ Enable **GPU Clothing**, **Six-CU graphics mask**, and **Blocking GPU waits** in
 Deck Physics. Set APEX PhysX to High in the game.
 
 Build the patch on x86-64 Linux with Python 3.11 or later, a C compiler targeting
-Steam Linux Runtime 4, and GNU binutils.
+Steam Linux Runtime 4.
 
     python3 sources/mafia-ii-classic/package.py
 
 Copy the resulting archive to the installer's `patches/mafia-ii-classic/` folder.
 The archive contains the preparation scripts and the patch's own compiled code.
-Setup generates the game-specific files from the matching local executable and
-DLLs. The launcher mounts them for the game session.
+Setup generates the game-specific files from the matching local DLLs. The
+launcher mounts them for the game session. Mafia II runs its original executable
+so returning to the menu uses the original vertex-packing code.
 
 ## Update the patch catalog
 
