@@ -4,7 +4,7 @@
   "app_id": "50130",
   "title": "GPU Clothing",
   "description": "Runs Mafia II Classic clothing simulation on the GPU.",
-  "details": "Enables GPU clothing and skips inactive performance-monitoring work. Requires the supported Mafia II Classic and PhysX builds. Use APEX PhysX High in the game.",
+  "details": "Enables GPU clothing, reduces inactive profiling overhead, and accelerates render vertex packing. Requires the supported Mafia II Classic and PhysX builds. Use APEX PhysX High in the game.",
   "requires": [
     "gpu-mask",
     "blocking-wait"
@@ -15,6 +15,12 @@
     "MAFIA_CLOTH_MODULE": "generated/APEX_Clothing.dll"
   },
   "replacements": [
+    {
+      "root": "game",
+      "target": "mafia2.exe",
+      "source": "generated/mafia2.exe",
+      "original_sha256": "497ed7017f2a355b73fbb20940f1b729d06f5740d7e07c45399d77449382deb1"
+    },
     {
       "root": "game",
       "target": "APEX_release.dll",

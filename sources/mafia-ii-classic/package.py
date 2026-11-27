@@ -18,10 +18,18 @@ def build(output):
         subprocess.run(['cc', '-O2', '-Wall', '-Wextra', '-fPIC', '-shared', '-pthread',
                         '-Wl,--build-id=none', '-o', str(library), 'cloth-route.c', 'fill.c', '-ldl'],
                        cwd=SOURCE, check=True)
+        packing = work / 'packing.o'
+        subprocess.run(['as', '--32', '-o', str(packing), 'packing.S'], cwd=SOURCE, check=True)
+        for section in ('position', 'basis'):
+            subprocess.run(['objcopy', '-O', 'binary', '-j', '.' + section, str(packing),
+                            str(work / (section + '.bin'))], check=True)
         payload = {'patch.json': SOURCE / 'patch.json',
                    'files/mafia-gpu-clothing.so': library,
                    'files/prepare.py': SOURCE / 'prepare.py',
-                   'files/perfmon.py': SOURCE / 'perfmon.py'}
+                   'files/perfmon.py': SOURCE / 'perfmon.py',
+                   'files/pack_render.py': SOURCE / 'pack_render.py',
+                   'files/position.bin': work / 'position.bin',
+                   'files/basis.bin': work / 'basis.bin'}
         pending = work / output.name
         with ZipFile(pending, 'w') as archive:
             for member, path in sorted(payload.items()):

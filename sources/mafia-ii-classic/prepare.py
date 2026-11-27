@@ -6,6 +6,8 @@ import shutil
 import subprocess
 import sys
 
+from pack_render import build_render_image
+
 prefix, executable = map(Path, sys.argv[1:])
 game = executable.parent
 core = (prefix / 'pfx/drive_c/Program Files (x86)/NVIDIA Corporation/PhysX'
@@ -13,6 +15,7 @@ core = (prefix / 'pfx/drive_c/Program Files (x86)/NVIDIA Corporation/PhysX'
 source = Path(__file__).resolve().parent
 output = source / 'generated'
 output.mkdir()
+(output / 'mafia2.exe').write_bytes(build_render_image(executable, source))
 subprocess.run([sys.executable, '-B', str(source / 'perfmon.py'), str(output),
                 str(game / 'APEX_release.dll'), str(core)], check=True)
 shutil.copyfile(game / 'APEX_Clothing.dll', output / 'APEX_Clothing.dll')
