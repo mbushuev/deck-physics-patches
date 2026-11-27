@@ -1,0 +1,34 @@
+{
+  "format": 1,
+  "games": {
+    "35140": [
+      {
+        "path": "patches/batman-arkham-asylum-goty/cloth-bounds.deckphysx.zip",
+        "sha256": "d78450d3ae5af7debe1ac6ce868a7335869c3072e52683a59a9ce3d0bf94d31c",
+        "size": 19447
+      },
+      {
+        "path": "patches/batman-arkham-asylum-goty/cloth-shape-reads.deckphysx.zip",
+        "sha256": "a2e605c144f0f3164a097eaf94e41bb9cd0ca103333ad541f9fb564a5e9e8a86",
+        "size": 436
+      },
+      {
+        "path": "patches/batman-arkham-asylum-goty/cloth-triangle-groups.deckphysx.zip",
+        "sha256": "90898e3c91186500960fcf27d1f3c59d537ec6b24672a6e347eaca9249769fc2",
+        "size": 424
+      },
+      {
+        "path": "patches/batman-arkham-asylum-goty/cloth-triangle-reads.deckphysx.zip",
+        "sha256": "c821d58de6993f10bc5cfd724295bb0c221747dcd408c5a35b11e5f0a1a97f86",
+        "size": 429
+      }
+    ],
+    "50130": [
+      {
+        "path": "patches/mafia-ii-classic/gpu-clothing.deckphysx.zip",
+        "sha256": "99e9029bb997f97410dd0f77afce05064d7f81ce690c310a71c0b12c1643e5a3",
+        "size": 9753
+      }
+    ]
+  }
+}

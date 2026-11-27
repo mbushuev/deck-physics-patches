@@ -1,10 +1,16 @@
 # Deck Physics Patches
 
-Private Batman collision patches for the [Deck Physics installer](https://github.com/mbushuev/deck-physics). The installer already includes the graphics mask and blocking GPU waits for each tested game.
+Optional per-game performance patches for the [Deck Physics installer](https://github.com/mbushuev/deck-physics). The installer already includes the graphics mask and blocking GPU waits for each tested game.
 
 See the [Batman benchmark results](docs/batman-benchmarks.md) for the performance and battery measurements with the collision patches.
 
 ## Install
+
+In Desktop Mode, open Deck Physics, select a game, and click **Download patches**.
+Select the patches and click **Set Up Game**. The installer downloads only the
+selected game's patch set.
+
+### Install from an archive
 
 1. Download `DeckPhysics-Patches-0.1.0.zip` from the latest successful **Package game patches** run in Actions.
 2. Extract it into the folder containing `Install.sh`. Merge the `patches/` folder when prompted.
@@ -23,3 +29,30 @@ patches/
 Each patch archive declares its Steam App ID, title, description and dependencies. The installer shows only patches for games it detects.
 
 The archive version comes from `VERSION`. To create the 0.1.0 archive locally, run `python3 -m zipfile -c DeckPhysics-Patches-0.1.0.zip patches` from the repository root. You can also run **Package game patches** manually in Actions to refresh an expired download.
+
+## Mafia II Classic
+
+The optional GPU Clothing patch requires a Deck Physics build with file replacement
+support. It uses the Steam Classic executable and its installed PhysX 2.8.3 runtime.
+Enable **GPU Clothing**, **Six-CU graphics mask**, and **Blocking GPU waits** in
+Deck Physics. Set APEX PhysX to High in the game.
+
+Build the patch on x86-64 Linux with Python 3.11 or later, a C compiler targeting
+Steam Linux Runtime 4, and GNU binutils.
+
+    python3 sources/mafia-ii-classic/package.py
+
+Copy the resulting archive to the installer's `patches/mafia-ii-classic/` folder.
+The archive contains the preparation scripts and the patch's own compiled code.
+Setup generates the game-specific files from the matching local executable and
+DLLs. The launcher mounts them for the game session.
+
+## Update the patch catalog
+
+After rebuilding a patch archive, run
+
+    python3 tools/Build-PatchCatalog.py
+
+Commit the updated archive and catalog together. The installer verifies each
+download against the catalog. Generated game executables and PhysX modules
+stay in the user's local installation.

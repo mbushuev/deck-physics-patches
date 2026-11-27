@@ -1,0 +1,43 @@
+{
+  "format": 1,
+  "id": "gpu-clothing",
+  "app_id": "50130",
+  "title": "GPU Clothing",
+  "description": "Runs Mafia II Classic clothing simulation on the GPU.",
+  "details": "Enables GPU clothing and reduces CPU work preparing clothing for rendering. Requires the supported Mafia II Classic and PhysX builds. Use APEX PhysX High in the game.",
+  "requires": [
+    "gpu-mask",
+    "blocking-wait"
+  ],
+  "prepare": "prepare.py",
+  "preload": "mafia-gpu-clothing.so",
+  "file_environment": {
+    "MAFIA_CLOTH_MODULE": "generated/APEX_Clothing.dll"
+  },
+  "replacements": [
+    {
+      "root": "game",
+      "target": "mafia2.exe",
+      "source": "generated/mafia2.exe",
+      "original_sha256": "497ed7017f2a355b73fbb20940f1b729d06f5740d7e07c45399d77449382deb1"
+    },
+    {
+      "root": "game",
+      "target": "APEX_release.dll",
+      "source": "generated/APEX_release.dll",
+      "original_sha256": "2ed59ea51b7daea25f409ab2b9d9620178448f9e8240cdedcb52ea50329f54eb"
+    },
+    {
+      "root": "game",
+      "target": "APEX_Clothing.dll",
+      "source": "generated/APEX_Clothing.dll",
+      "original_sha256": "b2d98a666e0e70779048dad3b6ffb715b048245bd4611af6344e879d283f5f15"
+    },
+    {
+      "root": "prefix",
+      "target": "pfx/drive_c/Program Files (x86)/NVIDIA Corporation/PhysX/Engine/v2.8.3/PhysXCore.dll",
+      "source": "generated/PhysXCore.dll",
+      "original_sha256": "76968970b39c7201352efd133063771924a10c69b1f6847922d25c62a48347fc"
+    }
+  ]
+}
