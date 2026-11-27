@@ -20,6 +20,13 @@ the render calls through the accelerated routines. The patch package contains no
 
 ## Built-in benchmark
 
+The original Steam launch on Valve Proton 11.0-3 averaged **13.5 FPS** in
+the built-in benchmark on Steam Deck OLED at 1280 × 800 and APEX PhysX High.
+The full Deck Physics profile on Valve Proton 11.0-2e averaged **76.7 FPS**.
+The two runs compare complete setups, including different Proton builds.
+
+### Effect of render packing in the optimized profile
+
 Two runs used Steam Deck OLED on AC with Valve Proton 11.0-2e, GPU clocks in
 automatic mode, 1280 × 800, APEX PhysX High, all effects, and both VSync and
 antialiasing off. GPU Clothing, the graphics mask, and blocking waits were
